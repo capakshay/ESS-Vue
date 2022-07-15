@@ -118,21 +118,25 @@ export default {
       ],
     };
   },
-  beforeUpdate() {
+  beforeUpdated() {
     this.data = {
       name: this.name,
       project: this.project,
       activity: this.activity,
       date: this.date,
-      timeSpent: this.timeSpent,
+      timespent: this.timeSpent,
       description: this.description,
     };
-    console.log(this.sendData);
-    if (this.sendData == false) {
-      this.addData(this.data);
-    }
+    console.log(this.data);
   },
-
+  watch: {
+    // data: {
+    //   handler(newValue, oldValue) {
+    //     console.log(newValue, "-->", oldValue);
+    //   },
+    //   deep: true,
+    // },
+  },
   methods: {
     changeIcon(obj, idx, check) {
       console.log(idx, check);
