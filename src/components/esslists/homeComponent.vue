@@ -1,9 +1,13 @@
 <template>
-  <h1>HomeComponent</h1>
+  <h1><img src="../../assets/winjit.png" alt="" /></h1>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped></style>
+<style scoped>
+img {
+  width: -webkit-fill-available;
+}
+</style>

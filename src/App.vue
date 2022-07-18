@@ -32,6 +32,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  margin: 0 164px;
 }
 
 html {
@@ -60,6 +61,10 @@ img {
 }
 .first {
   border: 2px solid black;
+  margin: 10px 64px 0 0;
+}
+.second {
+  margin-left: -25px;
 }
 .third {
   display: grid;

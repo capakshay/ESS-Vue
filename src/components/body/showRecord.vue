@@ -48,25 +48,26 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
-    },
-    project: {
-      type: String,
-    },
-    activity: {
-      type: String,
-    },
-    date: {
-      type: String,
-    },
-    timeSpent: {
-      type: Object,
-    },
-    description: {
-      type: String,
-    },
-    sendData: Boolean,
+    formObject:Object
+    // name: {
+    //   type: String,
+    // },
+    // project: {
+    //   type: String,
+    // },
+    // activity: {
+    //   type: String,
+    // },
+    // date: {
+    //   type: String,
+    // },
+    // timeSpent: {
+    //   type: Object,
+    // },
+    // description: {
+    //   type: String,
+    // },
+    // sendData: Boolean,
   },
   data() {
     return {

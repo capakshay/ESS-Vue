@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <form>
+    <form @submit.prevent="">
       <div class="grid">
         <label for="name" class="colspan-2">Employee</label>
         <div class="colspan-10">
@@ -14,18 +14,19 @@
           />
         </div>
       </div>
-      <div class="grid">
+      <div class="grid" :class="{ invalid: error.pError }">
         <label for="project" class="colspan-2">Project</label>
         <div class="colspan-10">
-          <select id="project" v-model="form.project">
+          <select id="project" v-model.trim="form.project">
             <option selected>---Select---</option>
             <option>TeleForg</option>
             <option>Art</option>
             <option>TelJoy</option>
           </select>
+          <small v-if="error.pError">Project Name Required</small>
         </div>
       </div>
-      <div class="grid">
+      <div class="grid" :class="{ invalid: error.aError }">
         <label for="activity" class="colspan-2">Activity</label>
         <div class="colspan-10">
           <select id="activity" v-model="form.activity">
@@ -36,9 +37,10 @@
             <option>Documentation</option>
             <option>Research & Development</option>
           </select>
+          <small v-if="error.aError">Activity Name Required</small>
         </div>
       </div>
-      <div class="grid">
+      <div class="grid" :class="{ invalid: error.dError }">
         <label for="date" class="colspan-2">Date</label>
         <div class="colspan-10">
           <input
@@ -48,14 +50,16 @@
             autocomplete="off"
             v-model="form.date"
           />
+          <small v-if="error.dError">Date Required</small>
         </div>
       </div>
-      <div class="grid">
+      <div class="grid" :class="{ invalid: error.tsError }">
         <label for="timeSpent" class="colspan-2">TimeSpent</label>
         <div class="sub-grid">
           <div class="sub-grid2">
             <label for="">Hrs</label>
             <input type="number" v-model="form.timeSpent.hrs" />
+            <small v-if="error.tsError">Time Required</small>
           </div>
           <div class="sub-grid2">
             <label for="">Min</label>
@@ -63,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="grid">
+      <div class="grid" :class="{ invalid: error.desError }">
         <label for="description" class="colspan-2">Description</label>
         <div class="colspan-10">
           <textarea
@@ -71,6 +75,7 @@
             type="textarea"
             v-model="form.description"
           ></textarea>
+          <small v-if="error.desError">Description Required</small>
         </div>
       </div>
 
@@ -133,6 +138,7 @@
 </template>
 
 <script>
+// import {required ,minLength} from 'vuelidate/lib/validators';
 // import ShowRecord from "../body/showRecord.vue";
 export default {
   components: {
@@ -154,6 +160,14 @@ export default {
         },
         description: "",
       },
+      error: {
+        pError: false,
+        aError: false,
+        dError: false,
+        tsError: false,
+        desError: false,
+      },
+      validity: Boolean,
       allDate: [
         {
           "2022-06-09": [
@@ -201,20 +215,31 @@ export default {
     };
   },
   methods: {
-    formData() {
-      console.log(this.form);
-      let currentDate = this.form.date;
-      if (`${currentDate}` in this.allDate[0]) {
-        let id = this.allDate[0][`${currentDate}`].length;
-        this.form.id = id;
-        this.allDate[0][`${currentDate}`].push(this.form);
+    formData(e) {
+      this.error.pError = false;
+      this.error.aError = false;
+      this.error.dError = false;
+      this.error.tsError = false;
+      this.error.desError = false;
 
-        this.form = null;
-      } else {
-        this.allDate[0][currentDate] = [];
-        this.allDate[0][`${currentDate}`].push(this.form);
+      let validateAllField = this.validateForm(this.form);
+      this.validity = validateAllField;
+      if (validateAllField == true) {
+        console.log("Hey Validate", this.form);
+        let currentDate = this.form.date;
+        if (`${currentDate}` in this.allDate[0]) {
+          let id = this.allDate[0][`${currentDate}`].length;
+          this.form.id = id;
+          this.allDate[0][`${currentDate}`].push(this.form);
+
+          this.form = null;
+        } else {
+          this.allDate[0][currentDate] = [];
+          this.allDate[0][`${currentDate}`].push(this.form);
+        }
+        e.preventDefault();
+        this.resetForm();
       }
-      this.resetForm();
     },
     changeIcon(obj, idx, check) {
       console.log(idx, check);
@@ -243,20 +268,40 @@ export default {
       };
     },
     updateData() {
-      console.log("Update", this.form);
       this.submitButton = true;
       let updatedDate = this.form.date;
       if (`${updatedDate}` in this.allDate[0]) {
         let id = this.allDate[0][`${updatedDate}`].length;
         this.form.id = id;
-        this.allDate[0][`${updatedDate}`].push(this.form);
-
+        console.log(this.allDate[0][`${updatedDate}`][id - 1]);
+        this.allDate[0][`${updatedDate}`][id - 1] = this.form;
+        // this.updateAllData();
         this.form = null;
       } else {
         this.allDate[0][updatedDate] = [];
         this.allDate[0][`${updatedDate}`].push(this.form);
       }
       this.resetForm();
+    },
+    validateForm(valForm) {
+      if (valForm.project == "") {
+        this.error.pError = true;
+        return false;
+      } else if (valForm.activity == "") {
+        this.error.aError = true;
+        return false;
+      } else if (valForm.date == "") {
+        this.error.dError = true;
+        return false;
+      } else if (valForm.timeSpent.hrs == "" && valForm.timeSpent.min == "") {
+        this.error.tsError = true;
+        return false;
+      } else if (valForm.description == "") {
+        this.error.desError = true;
+        return false;
+      } else {
+        return true;
+      }
     },
     resetForm() {
       this.form = {
@@ -283,6 +328,9 @@ export default {
   display: grid;
   grid: 100% / 20% 80%;
   padding: 4px 10px 4px 4px;
+}
+.grid.invalid {
+  color: red;
 }
 .sub-grid {
   display: grid;
@@ -347,6 +395,10 @@ li {
 span {
   padding: 1rem;
   width: 10px;
+}
+small {
+  display: block;
+  margin-top: 4px;
 }
 table {
   border-collapse: collapse;
