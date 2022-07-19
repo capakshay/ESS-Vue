@@ -4,11 +4,10 @@ import {fas} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import App from './App.vue'
 import router from './router'
-import Vuelidate from 'vuelidate'
 
 library.add(fas);
 
 createApp(App)
-    .use(router,Vuelidate)
+    .use(router)
     .component('fa',FontAwesomeIcon)
     .mount('#app')

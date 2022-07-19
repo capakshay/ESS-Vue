@@ -2,8 +2,10 @@
   <div class="flex">
     <div>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/timesheet">Timesheet</router-link></li>
+        <li><router-link to="/homeComponent">Home</router-link></li>
+        <li>
+          <router-link to="/homeComponent/timesheet">Timesheet</router-link>
+        </li>
         <li>Leave Management</li>
         <li>Posco</li>
         <li>Form and Docs</li>

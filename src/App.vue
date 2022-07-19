@@ -1,30 +1,8 @@
 <template>
-  <div>
-    <div class="first">
-      <h1><img src="./assets/winjit.png" alt="winjit logo" /> Timesheet</h1>
-    </div>
-    <div class="second">
-      <nav>
-        <the-navigation></the-navigation>
-      </nav>
-    </div>
-    <div class="third">
-      <main-content></main-content>
-      <right-side-bar></right-side-bar>
-    </div>
-  </div>
+  <router-view></router-view>
 </template>
 <script>
-import TheNavigation from "./components/nav/theNavigation.vue";
-import MainContent from "./components/body/mainContent.vue";
-import RightSideBar from "./components/body/rightSideBar.vue";
-export default {
-  components: {
-    TheNavigation,
-    MainContent,
-    RightSideBar,
-  },
-};
+export default {};
 </script>
 <style>
 #app {
