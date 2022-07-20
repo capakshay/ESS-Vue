@@ -91,7 +91,7 @@
   </div>
 
   <div class="showdata">
-    <div class="d-flex justify-content-start dateparent">
+    <div class="d-flex justify-content-start">
       <div class="date">Date</div>
     </div>
     <ul>
@@ -323,6 +323,7 @@ export default {
 <style scoped>
 .main {
   border: 1px solid black;
+  padding: 0px;
 }
 .grid {
   display: grid;
@@ -427,5 +428,160 @@ a:hover {
 }
 .fa-2x {
   font-size: 20px;
+}
+@media only screen and (max-width: 1025px) and (min-width: 746px) {
+  .grid {
+    display: grid;
+    grid: 100% / 20% 80%;
+    padding: 5px;
+    font-size: 10px;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    margin: 0 15px;
+    font-size: 10px;
+    padding: 4px;
+  }
+  input {
+    height: 10px;
+  }
+  .sub-grid2 label {
+    padding-left: 25px;
+  }
+  button {
+    width: 30px;
+    height: 15px;
+    font-size: 7px;
+    padding: 0;
+    margin-left: 15px;
+  }
+  .date {
+    font-size: 15px;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    padding: 0 5px;
+  }
+  .fa-2x {
+    font-size: 10px;
+  }
+  span {
+    padding: 7px;
+  }
+  table {
+    font-size: 3px;
+  }
+  a:hover {
+    font-size: 3px;
+  }
+}
+@media only screen and (max-width: 745px) and (min-width: 480px) {
+  .grid {
+    display: grid;
+    grid: 100% / 20% 80%;
+    padding: 0;
+    font-size: 5px;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    margin: 2px 10px;
+    font-size: 5px;
+    padding: 2px;
+  }
+  input {
+    height: 5px;
+  }
+  .sub-grid2 label {
+    padding-left: 11px;
+  }
+  button {
+    width: 20px;
+    height: 10px;
+    font-size: 4px;
+    padding: 0;
+    margin-left: 10px;
+  }
+  .date {
+    font-size: 8px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    padding: 0 5px;
+  }
+  .fa-2x {
+    font-size: 7px;
+  }
+  span {
+    padding: 3px;
+  }
+  table {
+    font-size: 3px;
+  }
+  a:hover {
+    font-size: 3px;
+  }
+}
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+  .grid {
+    display: grid;
+    grid: 100% / 20% 80%;
+    padding: 0;
+    font-size: 5px;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    margin: 2px 10px;
+    font-size: 5px;
+    padding: 2px;
+  }
+  input {
+    height: 5px;
+  }
+  .sub-grid2 label {
+    padding-left: 11px;
+  }
+  button {
+    width: 20px;
+    height: 10px;
+    font-size: 4px;
+    padding: 0;
+    margin-left: 10px;
+  }
+  .date {
+    font-size: 8px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    padding: 0 5px;
+  }
+  .fa-2x {
+    font-size: 7px;
+  }
+  span {
+    padding: 3px;
+  }
+  table {
+    font-size: 3px;
+  }
+  a:hover {
+    font-size: 3px;
+  }
 }
 </style>

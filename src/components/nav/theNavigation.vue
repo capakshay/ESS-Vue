@@ -34,12 +34,12 @@ export default {};
   display: flex;
   font-size: 20px;
   background-color: rgba(95, 90, 90, 0.39);
+  justify-content: space-between;
 }
 div {
   border: 1px solid black;
   margin: 0 5px;
   padding: 0px;
-  height: 50px;
 }
 ul {
   display: flex;
@@ -50,6 +50,8 @@ ul {
 li {
   padding: 0 2px;
   margin-right: 10px;
+  height: auto;
+  word-wrap: break-word;
 }
 li:hover {
   background-color: rgb(201, 198, 193);
@@ -59,5 +61,63 @@ li:hover {
 p {
   padding: 5px;
   margin: 10px;
+}
+@media only screen and (max-width: 1302px) and (min-width: 1025px) {
+  .flex {
+    font-size: 12px;
+    width: 94%;
+    justify-content: space-between;
+  }
+  li {
+    margin-right: 7px;
+  }
+}
+@media only screen and (max-width: 1025px) and (min-width: 746px) {
+  .flex {
+    font-size: 8px;
+    width: 90%;
+    justify-content: space-between;
+  }
+  li {
+    margin-right: 5px;
+  }
+}
+@media only screen and (max-width: 745px) and (min-width: 480px) {
+  .flex {
+    font-size: 6px;
+    width: 86%;
+    justify-content: space-between;
+  }
+  ul {
+    margin: 8px 0 0 0;
+  }
+  li {
+    margin-right: 3px;
+  }
+  p {
+    padding: 0;
+    margin: 7px;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+  .flex {
+    font-size: 5px;
+    width: 84%;
+    justify-content: space-between;
+  }
+  ul {
+    margin: 6px 0 0 0;
+  }
+  li {
+    margin-right: 2px;
+  }
+  p {
+    padding: 0;
+    margin: 5px;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 320px) {
 }
 </style>
